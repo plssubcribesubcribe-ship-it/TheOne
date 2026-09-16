@@ -1,0 +1,486 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="600" height="400" viewBox="0 0 600 400">
+  <rect x="0" y="0" width="600" height="400" fill="#ffffff"/>
+  <foreignObject x="0" y="0" width="600" height="400">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width:600px;height:400px;overflow:auto;">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Paid Access</title>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+input,button{
+    padding:10px;
+    margin:5px;
+}
+#adminPanel{
+    display:none;
+    border:1px solid #444;
+    padding:20px;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Paid Access</h1>
+
+<button onclick="openChat()">💬 Chat (PLEASE SHARE THIS NOT THE ACCESS CODE)
+</button>
+<br><br>
+
+<input id="codeInput" placeholder="Access Code">
+<button onclick="login()">Enter</button>
+
+<div id="terms" style="display:none;">
+    <h3>Terms & Conditions</h3>
+    <p>No sharing. No refunds.</p>
+    <button onclick="openCherry()">CHERRY</button>
+    <button onclick="openGnMath()">GnMath</button>
+    <button onclick="openUGS()">UGS Files</button>
+    <button onclick="openArctic()">Artic</button>
+</div>
+
+<div id="adminPanel">
+    <h2>Admin Panel</h2>
+
+    <input id="newCode" placeholder="New Code">
+    <button onclick="addCode()">Add Code</button>
+
+    <h3>Codes</h3>
+    <ul id="codeList"></ul>
+
+    <h3>Logs</h3>
+    <ul id="logList"></ul>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set, remove, push } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDItm8wa73Vc-27G41YFMsoTbpJKE1eqyI",
+  authDomain: "dontleak-b54c1.firebaseapp.com",
+  databaseURL: "https://dontleak-b54c1-default-rtdb.firebaseio.com",
+  projectId: "dontleak-b54c1",
+  storageBucket: "dontleak-b54c1.firebasestorage.app",
+  messagingSenderId: "87824315321",
+  appId: "1:87824315321:web:6e8e145cabfc56a4c3fc68"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+
+let uid = "unknown";
+
+signInAnonymously(auth).then((cred)=>{
+    uid = cred.user.uid;
+});
+
+window.login = async function() {
+
+    const code = document.getElementById("codeInput").value.trim();
+
+    if (!code) {
+        alert("Enter an access code");
+        return;
+    }
+
+    if (code === "OMGSTeven") {
+        document.getElementById("adminPanel").style.display = "block";
+        loadCodes();
+        async function loadLogs(){
+
+    const list = document.getElementById("logList");
+    list.innerHTML = "";
+
+    const snap = await get(ref(db,"logs"));
+
+    if(!snap.exists()) return;
+
+    const data = snap.val();
+
+    for(const id in data){
+
+        const item = data[id];
+
+        const li = document.createElement("li");
+
+        li.innerHTML =
+            item.time +
+            " | " +
+            item.code +
+            " | UID: " +
+            item.uid +
+            ` <button onclick="deleteLog('${id}')">Delete</button>`;
+
+        list.appendChild(li);
+    }
+}
+        return;
+    }
+
+    const snap = await get(ref(db, "codes/" + code));
+
+    if (snap.exists()) {
+        await push(ref(db, "logs"), {
+            code: code,
+            uid: uid,
+            time: new Date().toLocaleString()
+        });
+
+        document.getElementById("terms").style.display = "block";
+    } else {
+        alert("Invalid code");
+    }
+};
+
+   
+window.openChat = function() {
+    window.open("https://oo396jpx.yapp.page/", "_blank");
+};
+
+window.openCherry = function(){
+
+    const win = window.open("about:blank","_blank");
+
+    win.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <body style="margin:0;">
+        <iframe
+        src="https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/CHERRY@main/inwaefawefhweytg2376ewdex.svg"
+        style="width:100vw;height:100vh;border:none;">
+        </iframe>
+    </body>
+    </html>
+    `);
+
+    win.document.close();
+};
+
+
+
+window.openGnMath = function(){
+
+    const win = window.open("about:blank","_blank");
+
+    win.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <body style="margin:0;">
+        <iframe
+        src="https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/mywebby@main/gnENNNNZEEEEEmath.svg"
+        style="width:100vw;height:100vh;border:none;">
+        </iframe>
+    </body>
+    </html>
+    `);
+
+    win.document.close();
+};
+
+window.openUGS = function(){
+
+    const win = window.open("about:blank","_blank");
+
+    win.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>UGS Files</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(135deg, #2e3244 0%, #36224b 100%);
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 80px;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(10px);
+                padding: 20px 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                overflow-y: auto;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+                z-index: 1000;
+            }
+
+            .sidebar::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .sidebar::-webkit-scrollbar-track {
+                background: rgba(255,255,255,0.1);
+            }
+
+            .sidebar::-webkit-scrollbar-thumb {
+                background: rgba(255,255,255,0.3);
+                border-radius: 3px;
+            }
+
+            .sidebar-btn {
+                background: rgb(89, 134, 218);
+                border: none;
+                padding: 12px;
+                font-size: 18px;
+                font-weight: 700;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                color: white;
+                text-align: center;
+                min-height: 45px;
+            }
+
+            .sidebar-btn:hover {
+                background: #79aadb;
+                transform: scale(1.05);
+            }
+
+            .sidebar-btn.empty {
+                opacity: 0.4;
+                cursor: default;
+            }
+
+            .sidebar-btn.empty:hover {
+                transform: none;
+                background: rgb(89, 134, 218);
+            }
+
+            .main-content {
+                margin-left: 100px;
+                flex: 1;
+                padding: 20px;
+            }
+
+            h1 {
+                color: white;
+                text-align: center;
+                margin-bottom: 30px;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .letter-section {
+                margin-bottom: 40px;
+                padding: 0 20px;
+                max-width: 900px;
+                margin-left: auto;
+                margin-right: auto;
+                min-height: 100px;
+            }
+
+            .letter-section.empty {
+                opacity: 0.5;
+            }
+
+            .letter-header {
+                color: white;
+                font-size: 32px;
+                font-weight: bold;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 3px solid rgba(255,255,255,0.3);
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .buttons-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .empty-message {
+                color: rgba(255,255,255,0.6);
+                font-style: italic;
+                text-align: center;
+                padding: 20px;
+            }
+
+            input[type="button"] {
+                background: rgb(89, 134, 218);
+                border: none;
+                padding: 15px 30px;
+                font-size: 16px;
+                font-weight: 500;
+                border-radius: 8px;
+                cursor: pointer;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+                width: 100%;
+                max-width: 600px;
+                color: white;
+                text-align: left;
+            }
+
+            input[type="button"]:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+                background: #79aadb;
+            }
+
+            input[type="button"]:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            @media (max-width: 768px) {
+                .sidebar {
+                    width: 60px;
+                    padding: 15px 5px;
+                }
+                .sidebar-btn {
+                    padding: 8px;
+                    font-size: 16px;
+                }
+                .main-content {
+                    margin-left: 70px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="sidebar" id="sidebar">
+        </div>
+
+        <div class="main-content">
+            <h1>UGS Files</h1>
+        <h2 style="color: white; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: normal; font-size: 18px;">
+        Files from
+        <a href="https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/"
+            target="_blank"
+            style="display: inline; color: #79aadb; text-decoration: none; font-size: 18px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+            Ultimate Game Stash Google Doc
+        </a>
+        </h2>
+        <h2 style="color: white; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: normal; font-size: 18px;">
+        Discord Server:
+        <a href="https://discord.gg/rmVsAqkpkA"
+            target="_blank"
+            style="display: inline; color: #79aadb; text-decoration: none; font-size: 18px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+            https://discord.gg/rmVsAqkpkA
+        </a>
+        <h2 style="color: white; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: normal; font-size: 18px;">
+            <input type="text" placeholder="Search..." id="searchInput" style="padding: 13px; width: 100%; max-width: 420px; border-radius: 8px; border: none; box-shadow: 0 2px 4px rgba(7, 105, 218, 0.1);">
+            <script src="https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@main/searchbut.js"><\/script>
+        <button id="lolbutton" onclick="const script = document.createElement('script');script.src = 'https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@latest/game.js';document.body.appendChild(script);">Click to load if it isnt loading</button>
+        </h2>
+
+
+            <div id="sections-container">
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@main/games.js"><\/script>
+    </body>
+    </html>
+    `);
+
+    win.document.close();
+};
+
+window.openArctic = function(){
+
+    const win = window.open("about:blank","_blank");
+
+    win.document.write(`
+    <!doctype html><html><body><script>(()=>{const r="arctic-root",n=Date.now(),a=atob("aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3NlYWxpZWUxMS9hcmN0aWNAbWFpbi9pbmRleC5odG1sfGh0dHBzOi8vZ2NvcmUuanNkZWxpdnIubmV0L2doL3NlYWxpZWUxMS9hcmN0aWNAbWFpbi9pbmRleC5odG1sfGh0dHBzOi8vdGVzdGluZ2NmLmpzZGVsaXZyLm5ldC9naC9zZWFsaWVlMTEvYXJjdGljQG1haW4vaW5kZXguaHRtbHxodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vc2VhbGllZTExL2FyY3RpYy9tYWluL2luZGV4Lmh0bWx8aHR0cHM6Ly9jZG4uc3RhdGljYWxseS5pby9naC9zZWFsaWVlMTEvYXJjdGljL21haW4vaW5kZXguaHRtbHxodHRwczovL2VzbS5zaC9naC9zZWFsaWVlMTFAbWFpbi9hcmN0aWMvaW5kZXguaHRtbA==").split("|").map(u=>u+"?d="+n),f=document.createElement("iframe");f.allow="fullscreen";f.style.cssText="position:fixed;inset:0;width:100%;height:100%;border:0";document.body.append(f);const g=()=>{const u=a.shift();if(!u){document.body.innerText="Could not load Arctic.";return}fetch(u,{cache:"no-store"}).then(o=>{if(!o.ok)throw 0;return o.text()}).then(h=>{if(!h.includes(r))throw 0;f.srcdoc=h.replace(/<head>/i,'<head><base href="'+new URL(".",u)+'">')}).catch(g)};g()})()<\/script></body></html>
+    `);
+
+    win.document.close();
+};
+
+window.addCode = async function(){
+
+    const code = document.getElementById("newCode").value;
+
+    if(!code) return;
+
+    await set(ref(db,"codes/"+code),true);
+
+    loadCodes();
+};
+
+async function loadCodes(){
+
+    const list = document.getElementById("codeList");
+    list.innerHTML = "";
+
+    const snap = await get(ref(db,"codes"));
+
+    if(!snap.exists()) return;
+
+    const data = snap.val();
+
+    for(const code in data){
+
+        const li = document.createElement("li");
+
+        li.innerHTML = code + ` <button onclick="deleteCode('${code}')">Delete</button>`;
+
+        list.appendChild(li);
+    }
+}
+
+window.deleteCode = async function(code){
+
+    await remove(ref(db,"codes/"+code));
+
+    loadCodes();
+};
+
+async function loadLogs(){
+
+    const list = document.getElementById("logList");
+    list.innerHTML = "";
+
+    const snap = await get(ref(db,"logs"));
+
+    if(!snap.exists()) return;
+
+    const data = snap.val();
+
+    for(const id in data){
+
+        const item = data[id];
+
+        const li = document.createElement("li");
+
+        li.textContent =
+            item.time +
+            " | " +
+            item.code +
+            " | UID: " +
+            item.uid;
+
+        list.appendChild(li);
+    }
+}
+
+</script>
+
+</body>
+</html>
+    </div>
+  </foreignObject>
+</svg>
