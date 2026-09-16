@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="600" height="400" viewBox="0 0 600 400">
+  <rect x="0" y="0" width="600" height="400" fill="#ffffff"/>
+  <foreignObject x="0" y="0" width="600" height="400">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="width:600px;height:400px;overflow:auto;">
+      <style xmlns="http://www.w3.org/1999/xhtml"><![CDATA[
+
+body{
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+input,button{
+    padding:10px;
+    margin:5px;
+}
+#adminPanel{
+    display:none;
+    border:1px solid #444;
+    padding:20px;
+    margin-top:20px;
+}
+
+]]></style>
+      
+
+<h1 xmlns="http://www.w3.org/1999/xhtml">Paid Access</h1>
+
+<button xmlns="http://www.w3.org/1999/xhtml" onclick="openChat()">💬 Chat (PLEASE SHARE THIS NOT THE ACCESS CODE)
+</button>
+<br xmlns="http://www.w3.org/1999/xhtml" /><br xmlns="http://www.w3.org/1999/xhtml" />
+
+<input xmlns="http://www.w3.org/1999/xhtml" id="codeInput" placeholder="Access Code" />
+<button xmlns="http://www.w3.org/1999/xhtml" onclick="login()">Enter</button>
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="terms" style="display:none;">
+    <h3>Terms &amp; Conditions</h3>
+    <p>No sharing. No refunds.</p>
+    <button onclick="openCherry()">CHERRY</button>
+    <button onclick="openGnMath()">GnMath</button>
+    <button onclick="openUGS()">UGS Files</button>
+    <button onclick="openArctic()">Artic</button>
+</div>
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="adminPanel">
+    <h2>Admin Panel</h2>
+
+    <input id="newCode" placeholder="New Code" />
+    <button onclick="addCode()">Add Code</button>
+
+    <h3>Codes</h3>
+    <ul id="codeList"></ul>
+
+    <h3>Logs</h3>
+    <ul id="logList"></ul>
+</div>
+
+
+
+
+
+    </div>
+  </foreignObject>
+</svg>
