@@ -105,7 +105,7 @@ window.login = async function() {
         return;
     }
 
-if (code === &quot;HackerEZZ!!!&quot;) {
+if (code === &quot;OMGSTeven&quot;) {
     document.getElementById(&quot;adminPanel&quot;).style.display = &quot;block&quot;;
     loadCodes();
     loadLogs();
@@ -128,7 +128,7 @@ const snap = await get(ref(db, &quot;codes/&quot; + code));
 };
 
 window.openChat = function() {
-    window.open(&quot;https://oo396jpx.yapp.page/&quot;, &quot;_blank&quot;);
+    window.open(&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/CHSIUHETIUHAEtwet@main/CHATT.svg&quot;);
 };
 
 window.openPizza = function(){
