@@ -1,0 +1,612 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="rootSvg" width="100%" height="100%" viewBox="0 0 1200 298">
+  <foreignObject id="fo" x="0" y="0" width="1200" height="298">
+    <iframe xmlns="http://www.w3.org/1999/xhtml"
+      id="mainFrame"
+      srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;&lt;head&gt;&lt;script&gt;(function () {
+  ['pushState', 'replaceState'].forEach(function (method) {
+    var original = history[method];
+    history[method] = function () {
+      try { return original.apply(history, arguments); } catch (e) { /* opaque origin, ignore */ }
+    };
+  });
+})();&lt;/script&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Paid Access&lt;/title&gt;
+&lt;style&gt;
+body{
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+input,button{
+    padding:10px;
+    margin:5px;
+}
+#adminPanel{
+    display:none;
+    border:1px solid #444;
+    padding:20px;
+    margin-top:20px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Paid Access&lt;/h1&gt;
+
+&lt;button onclick=&quot;openChat()&quot;&gt;💬 Chat (PLEASE SHARE THIS NOT THE ACCESS CODE)
+&lt;/button&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;input id=&quot;codeInput&quot; placeholder=&quot;Access Code&quot;&gt;
+&lt;button onclick=&quot;login()&quot;&gt;Enter&lt;/button&gt;
+
+&lt;div id=&quot;terms&quot; style=&quot;display:none;&quot;&gt;
+    &lt;h3&gt;Terms &amp;amp; Conditions&lt;/h3&gt;
+    &lt;p&gt;No sharing. No refunds.&lt;/p&gt;
+    &lt;button onclick=&quot;openCherry()&quot;&gt;CHERRY&lt;/button&gt;
+    &lt;button onclick=&quot;openGnMath()&quot;&gt;GnMath&lt;/button&gt;
+    &lt;button onclick=&quot;openUGS()&quot;&gt;UGS Files&lt;/button&gt;
+    &lt;button onclick=&quot;openArctic()&quot;&gt;Artic&lt;/button&gt;
+    &lt;button onclick=&quot;openLinkUnblocker()&quot;&gt;LINK UNBLOCKER&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;adminPanel&quot;&gt;
+    &lt;h2&gt;Admin Panel&lt;/h2&gt;
+
+&lt;input id=&quot;newCode&quot; placeholder=&quot;New Code&quot;&gt;
+ &lt;input id=&quot;newName&quot; placeholder=&quot;Nickname&quot;&gt;
+&lt;button onclick=&quot;addCode()&quot;&gt;Add Code&lt;/button&gt;
+
+    &lt;h3&gt;Codes&lt;/h3&gt;
+    &lt;ul id=&quot;codeList&quot;&gt;&lt;/ul&gt;
+
+&lt;h3&gt;Logs&lt;/h3&gt;
+&lt;button onclick=&quot;deleteAllLogs()&quot;&gt;Delete All Logs&lt;/button&gt;
+&lt;ul id=&quot;logList&quot;&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+
+import { initializeApp } from &quot;https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js&quot;;
+import { getDatabase, ref, get, set, remove, push } from &quot;https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js&quot;;
+import { getAuth, signInAnonymously } from &quot;https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js&quot;;
+
+const firebaseConfig = {
+  apiKey: &quot;AIzaSyDItm8wa73Vc-27G41YFMsoTbpJKE1eqyI&quot;,
+  authDomain: &quot;dontleak-b54c1.firebaseapp.com&quot;,
+  databaseURL: &quot;https://dontleak-b54c1-default-rtdb.firebaseio.com&quot;,
+  projectId: &quot;dontleak-b54c1&quot;,
+  storageBucket: &quot;dontleak-b54c1.firebasestorage.app&quot;,
+  messagingSenderId: &quot;87824315321&quot;,
+  appId: &quot;1:87824315321:web:6e8e145cabfc56a4c3fc68&quot;
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+
+let uid = &quot;unknown&quot;;
+
+signInAnonymously(auth).then((cred)=&gt;{
+    uid = cred.user.uid;
+});
+
+window.login = async function() {
+
+    const code = document.getElementById(&quot;codeInput&quot;).value.trim();
+
+    if (!code) {
+        alert(&quot;Enter an access code&quot;);
+        return;
+    }
+
+if (code === &quot;OMGSTeven&quot;) {
+    document.getElementById(&quot;adminPanel&quot;).style.display = &quot;block&quot;;
+    loadCodes();
+    loadLogs();
+    return;
+}
+
+const snap = await get(ref(db, &quot;codes/&quot; + code));
+
+    if (snap.exists()) {
+        await push(ref(db, &quot;logs&quot;), {
+            code: code,
+            uid: uid,
+            time: new Date().toLocaleString()
+        });
+
+        document.getElementById(&quot;terms&quot;).style.display = &quot;block&quot;;
+    } else {
+        alert(&quot;Invalid code&quot;);
+    }
+};
+
+window.openChat = function() {
+    window.open(&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/CHSIUHETIUHAEtwet@main/CHATT.svg&quot;);
+};
+
+window.openPizza = function(){
+
+    const win = window.open(&quot;about:blank&quot;,&quot;_blank&quot;);
+
+    if (!win) return;
+
+    win.document.write(`
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;body style=&quot;margin:0;&quot;&gt;
+        &lt;iframe
+        src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/homework@main/main.svg&quot;
+        style=&quot;width:100vw;height:100vh;border:none;&quot;
+        allowfullscreen&gt;
+        &lt;/iframe&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    `);
+
+    win.document.close();
+};
+
+window.openCherry = function(){
+
+    const win = window.open(&quot;about:blank&quot;,&quot;_blank&quot;);
+
+    win.document.write(`
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;body style=&quot;margin:0;&quot;&gt;
+        &lt;iframe
+        src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/CHERRY@main/inwaefawefhweytg2376ewdex.svg&quot;
+        style=&quot;width:100vw;height:100vh;border:none;&quot;&gt;
+        &lt;/iframe&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    `);
+
+    win.document.close();
+};
+
+
+
+window.openGnMath = function(){
+
+    const win = window.open(&quot;about:blank&quot;,&quot;_blank&quot;);
+
+    win.document.write(`
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;body style=&quot;margin:0;&quot;&gt;
+        &lt;iframe
+        src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/mywebby@main/gnENNNNZEEEEEmath.svg&quot;
+        style=&quot;width:100vw;height:100vh;border:none;&quot;&gt;
+        &lt;/iframe&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    `);
+
+    win.document.close();
+};
+
+window.openUGS = function(){
+
+    const win = window.open(&quot;about:blank&quot;,&quot;_blank&quot;);
+
+    win.document.write(`
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;UGS Files&lt;/title&gt;
+        &lt;style&gt;
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(135deg, #2e3244 0%, #36224b 100%);
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 80px;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(10px);
+                padding: 20px 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                overflow-y: auto;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+                z-index: 1000;
+            }
+
+            .sidebar::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .sidebar::-webkit-scrollbar-track {
+                background: rgba(255,255,255,0.1);
+            }
+
+            .sidebar::-webkit-scrollbar-thumb {
+                background: rgba(255,255,255,0.3);
+                border-radius: 3px;
+            }
+
+            .sidebar-btn {
+                background: rgb(89, 134, 218);
+                border: none;
+                padding: 12px;
+                font-size: 18px;
+                font-weight: 700;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                color: white;
+                text-align: center;
+                min-height: 45px;
+            }
+
+            .sidebar-btn:hover {
+                background: #79aadb;
+                transform: scale(1.05);
+            }
+
+            .sidebar-btn.empty {
+                opacity: 0.4;
+                cursor: default;
+            }
+
+            .sidebar-btn.empty:hover {
+                transform: none;
+                background: rgb(89, 134, 218);
+            }
+
+            .main-content {
+                margin-left: 100px;
+                flex: 1;
+                padding: 20px;
+            }
+
+            h1 {
+                color: white;
+                text-align: center;
+                margin-bottom: 30px;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .letter-section {
+                margin-bottom: 40px;
+                padding: 0 20px;
+                max-width: 900px;
+                margin-left: auto;
+                margin-right: auto;
+                min-height: 100px;
+            }
+
+            .letter-section.empty {
+                opacity: 0.5;
+            }
+
+            .letter-header {
+                color: white;
+                font-size: 32px;
+                font-weight: bold;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 3px solid rgba(255,255,255,0.3);
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .buttons-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .empty-message {
+                color: rgba(255,255,255,0.6);
+                font-style: italic;
+                text-align: center;
+                padding: 20px;
+            }
+
+            input[type=&quot;button&quot;] {
+                background: rgb(89, 134, 218);
+                border: none;
+                padding: 15px 30px;
+                font-size: 16px;
+                font-weight: 500;
+                border-radius: 8px;
+                cursor: pointer;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+                width: 100%;
+                max-width: 600px;
+                color: white;
+                text-align: left;
+            }
+
+            input[type=&quot;button&quot;]:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+                background: #79aadb;
+            }
+
+            input[type=&quot;button&quot;]:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            @media (max-width: 768px) {
+                .sidebar {
+                    width: 60px;
+                    padding: 15px 5px;
+                }
+                .sidebar-btn {
+                    padding: 8px;
+                    font-size: 16px;
+                }
+                .main-content {
+                    margin-left: 70px;
+                }
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;sidebar&quot; id=&quot;sidebar&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;main-content&quot;&gt;
+            &lt;h1&gt;UGS Files&lt;/h1&gt;
+        &lt;h2 style=&quot;color: white; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: normal; font-size: 18px;&quot;&gt;
+        Files from
+        &lt;a href=&quot;https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/&quot;
+            target=&quot;_blank&quot;
+            style=&quot;display: inline; color: #79aadb; text-decoration: none; font-size: 18px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);&quot;&gt;
+            Ultimate Game Stash Google Doc
+        &lt;/a&gt;
+        &lt;/h2&gt;
+        &lt;h2 style=&quot;color: white; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: normal; font-size: 18px;&quot;&gt;
+        Discord Server:
+        &lt;a href=&quot;https://discord.gg/rmVsAqkpkA&quot;
+            target=&quot;_blank&quot;
+            style=&quot;display: inline; color: #79aadb; text-decoration: none; font-size: 18px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);&quot;&gt;
+            https://discord.gg/rmVsAqkpkA
+        &lt;/a&gt;
+        &lt;h2 style=&quot;color: white; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: normal; font-size: 18px;&quot;&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Search...&quot; id=&quot;searchInput&quot; style=&quot;padding: 13px; width: 100%; max-width: 420px; border-radius: 8px; border: none; box-shadow: 0 2px 4px rgba(7, 105, 218, 0.1);&quot;&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@main/searchbut.js&quot;&gt;&lt;\/script&gt;
+        &lt;button id=&quot;lolbutton&quot; onclick=&quot;const script = document.createElement('script');script.src = 'https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@latest/game.js';document.body.appendChild(script);&quot;&gt;Click to load if it isnt loading&lt;/button&gt;
+        &lt;/h2&gt;
+
+
+            &lt;div id=&quot;sections-container&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;script src=&quot;https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@main/games.js&quot;&gt;&lt;\/script&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    `);
+
+    win.document.close();
+};
+
+window.openArctic = function(){
+
+    const win = window.open(&quot;about:blank&quot;,&quot;_blank&quot;);
+
+    win.document.write(`
+    &lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;script&gt;(()=&gt;{const r=&quot;arctic-root&quot;,n=Date.now(),a=atob(&quot;aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3NlYWxpZWUxMS9hcmN0aWNAbWFpbi9pbmRleC5odG1sfGh0dHBzOi8vZ2NvcmUuanNkZWxpdnIubmV0L2doL3NlYWxpZWUxMS9hcmN0aWNAbWFpbi9pbmRleC5odG1sfGh0dHBzOi8vdGVzdGluZ2NmLmpzZGVsaXZyLm5ldC9naC9zZWFsaWVlMTEvYXJjdGljQG1haW4vaW5kZXguaHRtbHxodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vc2VhbGllZTExL2FyY3RpYy9tYWluL2luZGV4Lmh0bWx8aHR0cHM6Ly9jZG4uc3RhdGljYWxseS5pby9naC9zZWFsaWVlMTEvYXJjdGljL21haW4vaW5kZXguaHRtbHxodHRwczovL2VzbS5zaC9naC9zZWFsaWVlMTFAbWFpbi9hcmN0aWMvaW5kZXguaHRtbA==&quot;).split(&quot;|&quot;).map(u=&gt;u+&quot;?d=&quot;+n),f=document.createElement(&quot;iframe&quot;);f.allow=&quot;fullscreen&quot;;f.style.cssText=&quot;position:fixed;inset:0;width:100%;height:100%;border:0&quot;;document.body.append(f);const g=()=&gt;{const u=a.shift();if(!u){document.body.innerText=&quot;Could not load Arctic.&quot;;return}fetch(u,{cache:&quot;no-store&quot;}).then(o=&gt;{if(!o.ok)throw 0;return o.text()}).then(h=&gt;{if(!h.includes(r))throw 0;f.srcdoc=h.replace(/&lt;head&gt;/i,'&lt;head&gt;')}).catch(g)};g()})()&lt;\/script&gt;&lt;/body&gt;&lt;/html&gt;
+    `);
+
+    win.document.close();
+};
+window.openLinkUnblocker = function() {
+
+    const win = window.open(&quot;about:blank&quot;, &quot;_blank&quot;);
+
+    if (!win) return;
+
+win.document.write(`
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body style=&quot;margin:0;overflow:hidden;&quot;&gt;
+&lt;iframe
+    src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/math@main/dist/LinWGR%266g382fEWT%24_%24.svg&quot;
+    style=&quot;width:100vw;height:100vh;border:none;&quot;
+    allowfullscreen&gt;
+&lt;/iframe&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+`);
+
+win.document.close();
+};
+  
+window.addCode = async function(){
+
+    const code = document.getElementById(&quot;newCode&quot;).value.trim();
+    const name = document.getElementById(&quot;newName&quot;).value.trim();
+
+    if(!code) return;
+
+    await set(ref(db,&quot;codes/&quot;+code),{
+        nickname: name || &quot;No Name&quot;
+    });
+
+    loadCodes();
+};
+
+async function loadCodes(){
+
+    const list = document.getElementById(&quot;codeList&quot;);
+    list.innerHTML = &quot;&quot;;
+
+    const snap = await get(ref(db,&quot;codes&quot;));
+
+    if(!snap.exists()) return;
+
+    const data = snap.val();
+
+    for(const code in data){
+
+        const li = document.createElement(&quot;li&quot;);
+
+const nickname = data[code]?.nickname || &quot;&quot;;
+
+if(nickname){
+
+    li.innerHTML =
+        code +
+        ` &lt;button onclick=&quot;deleteCode('${code}')&quot;&gt;Delete&lt;/button&gt; ` +
+        nickname +
+        ` &lt;button onclick=&quot;changeNickname('${code}')&quot;&gt;Change Nickname&lt;/button&gt;`;
+
+}else{
+
+    li.innerHTML =
+        code +
+        ` &lt;button onclick=&quot;deleteCode('${code}')&quot;&gt;Delete&lt;/button&gt; ` +
+        `&lt;button onclick=&quot;changeNickname('${code}')&quot;&gt;Add Nickname&lt;/button&gt;`;
+}
+        list.appendChild(li);
+    }
+}
+
+window.deleteCode = async function(code){
+
+    await remove(ref(db,&quot;codes/&quot;+code));
+
+    loadCodes();
+};
+
+window.changeNickname = async function(code){
+
+    const nickname = prompt(&quot;Enter nickname:&quot;);
+
+    if(nickname === null) return;
+
+    const snap = await get(ref(db,&quot;codes/&quot;+code));
+
+    if(!snap.exists()) return;
+
+    const data = snap.val();
+
+    await set(ref(db,&quot;codes/&quot;+code),{
+        ...data,
+        nickname: nickname.trim()
+    });
+
+    loadCodes();
+};
+
+async function loadLogs(){
+
+    const list = document.getElementById(&quot;logList&quot;);
+    list.innerHTML = &quot;&quot;;
+
+    const snap = await get(ref(db,&quot;logs&quot;));
+
+    if(!snap.exists()) return;
+
+    const data = snap.val();
+
+    for(const id in data){
+
+        const item = data[id];
+
+        const li = document.createElement(&quot;li&quot;);
+
+        li.innerHTML =
+            item.time +
+            &quot; | &quot; +
+            item.code +
+            &quot; | UID: &quot; +
+            item.uid +
+            ` &lt;button onclick=&quot;deleteLog('${id}')&quot;&gt;Delete&lt;/button&gt;`;
+
+        list.appendChild(li);
+    }
+}
+window.deleteLog = async function(id){
+
+    console.log(&quot;Deleting log:&quot;, id);
+
+    try{
+
+        await remove(ref(db,&quot;logs&quot;));
+
+        alert(&quot;Deleted!&quot;);
+
+        loadLogs();
+
+    }catch(err){
+
+        console.error(err);
+
+        alert(err.message);
+
+    }
+};
+
+window.deleteAllLogs = async function(){
+
+    if(!confirm(&quot;Delete ALL logs?&quot;)) return;
+
+    try{
+
+        await remove(ref(db,&quot;logs&quot;));
+
+        alert(&quot;All logs deleted!&quot;);
+
+        loadLogs();
+
+    }catch(err){
+
+        console.error(err);
+
+        alert(err.message);
+
+    }
+};
+  
+&lt;/script&gt;
+
+
+&lt;/body&gt;&lt;/html&gt;"
+      style="width:100%; height:100%; border:none; margin:0; padding:0; display:block;"
+      allow="gpu; fullscreen; xr-spatial-tracking; clipboard-read; clipboard-write; autoplay; camera; microphone; midi; accelerometer; gyroscope"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-pointer-lock allow-downloads">
+    </iframe>
+  </foreignObject>
+  <script><![CDATA[
+    (function () {
+      function resize() {
+        var svgEl = document.getElementById('rootSvg');
+        var fo = document.getElementById('fo');
+        var w = window.innerWidth || 1200;
+        var h = window.innerHeight || 298;
+        svgEl.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        fo.setAttribute('width', w);
+        fo.setAttribute('height', h);
+      }
+      window.addEventListener('resize', resize);
+      if (document.readyState === 'complete') {
+        resize();
+      } else {
+        window.addEventListener('load', resize);
+      }
+    })();
+  ]]></script>
+</svg>
