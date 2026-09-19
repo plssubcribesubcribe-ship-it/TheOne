@@ -105,7 +105,7 @@ window.login = async function() {
         return;
     }
 
-if (code === &quot;OMGSTeven&quot;) {
+if (code === &quot;HackerEZZ!!!&quot;) {
     document.getElementById(&quot;adminPanel&quot;).style.display = &quot;block&quot;;
     loadCodes();
     loadLogs();
