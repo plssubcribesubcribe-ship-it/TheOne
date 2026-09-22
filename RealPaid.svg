@@ -51,6 +51,7 @@ input,button{
     &lt;button onclick=&quot;openUGS()&quot;&gt;UGS Files&lt;/button&gt;
     &lt;button onclick=&quot;openArctic()&quot;&gt;Artic&lt;/button&gt;
     &lt;button onclick=&quot;openLinkUnblocker()&quot;&gt;LINK UNBLOCKER&lt;/button&gt;
+    &lt;button onclick=&quot;openBull33()&quot;&gt;BULL33&lt;/button&gt;
 &lt;/div&gt;
 
 &lt;div id=&quot;adminPanel&quot;&gt;
@@ -382,15 +383,36 @@ window.openUGS = function(){
         &lt;/a&gt;
         &lt;h2 style=&quot;color: white; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: normal; font-size: 18px;&quot;&gt;
             &lt;input type=&quot;text&quot; placeholder=&quot;Search...&quot; id=&quot;searchInput&quot; style=&quot;padding: 13px; width: 100%; max-width: 420px; border-radius: 8px; border: none; box-shadow: 0 2px 4px rgba(7, 105, 218, 0.1);&quot;&gt;
-            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@main/searchbut.js&quot;&gt;&lt;\/script&gt;
-        &lt;button id=&quot;lolbutton&quot; onclick=&quot;const script = document.createElement('script');script.src = 'https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@latest/game.js';document.body.appendChild(script);&quot;&gt;Click to load if it isnt loading&lt;/button&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/ugs-singlefile@main/searchbut.js&quot;&gt;&lt;\/script&gt;
+        &lt;button id=&quot;lolbutton&quot; onclick=&quot;const script = document.createElement('script');script.src = 'https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/ugs-singlefile@main/game.js';document.body.appendChild(script);&quot;&gt;Click to load if it isnt loading&lt;/button&gt;
         &lt;/h2&gt;
 
 
             &lt;div id=&quot;sections-container&quot;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
-        &lt;script src=&quot;https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@main/games.js&quot;&gt;&lt;\/script&gt;
+        &lt;script src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/ugs-singlefile@main/games.js&quot;&gt;&lt;\/script&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    `);
+
+    win.document.close();
+};
+window.openBull33 = function(){
+
+    const win = window.open(&quot;about:blank&quot;, &quot;_blank&quot;);
+
+    if (!win) return;
+
+    win.document.write(`
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;body style=&quot;margin:0;overflow:hidden;&quot;&gt;
+        &lt;iframe
+            src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/bull33@main/index.svg&quot;
+            style=&quot;width:100vw;height:100vh;border:none;&quot;
+            allowfullscreen&gt;
+        &lt;/iframe&gt;
     &lt;/body&gt;
     &lt;/html&gt;
     `);
