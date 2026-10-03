@@ -57,6 +57,7 @@ input,button{
     &lt;button onclick=&quot;openLinkUnblocker()&quot;&gt;LINK UNBLOCKER&lt;/button&gt;
     &lt;button onclick=&quot;openBull33()&quot;&gt;BULL33&lt;/button&gt;
     &lt;button onclick=&quot;openFrog()&quot;&gt;FROG&lt;/button&gt;
+    &lt;button onclick=&quot;openNovene()&quot;&gt;NOVENE&lt;/button&gt;
 &lt;/div&gt;
 
 &lt;div id=&quot;adminPanel&quot;&gt;
@@ -437,6 +438,28 @@ window.openFrog = function(){
     &lt;body style=&quot;margin:0;overflow:hidden;&quot;&gt;
         &lt;iframe
             src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/TheOne@main/frog.svg&quot;
+            style=&quot;width:100vw;height:100vh;border:none;&quot;
+            allowfullscreen&gt;
+        &lt;/iframe&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    `);
+
+    win.document.close();
+};
+
+window.openNovene = function(){
+
+    const win = window.open(&quot;about:blank&quot;, &quot;_blank&quot;);
+
+    if (!win) return;
+
+    win.document.write(`
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;body style=&quot;margin:0;overflow:hidden;&quot;&gt;
+        &lt;iframe
+            src=&quot;https://cdn.jsdelivr.net/gh/plssubcribesubcribe-ship-it/TheOne@main/LOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCALOCA.svg&quot;
             style=&quot;width:100vw;height:100vh;border:none;&quot;
             allowfullscreen&gt;
         &lt;/iframe&gt;
